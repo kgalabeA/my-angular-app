@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 interface product{
   name:string;
   type:string;
+  description:string;
 };
 
 @Injectable({
@@ -26,10 +27,11 @@ productUpdate:Subject<any>= new Subject<any>();
     this.productUpdate.next();
   }
 
-  addItem(name:string,type){
+  addItem(name:string,type:string,description:string){
     this.products.push({
       name: name,
-      type: type
+      type: type,
+      description:description
     });
     this.productUpdate.next();
   }

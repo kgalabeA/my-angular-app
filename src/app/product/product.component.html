@@ -1,15 +1,27 @@
+<div *ngIf="showElement" class="alert alert-{{this.alert?.type}}" role="alert">
+  {{this.alert?.message}}
+  <a class="close" (click)="handleAlert()">&times;</a>
+</div>
+
 <h2>My products</h2>
 <div>
-  <ul>
-    <app-single-product class="list-group" *ngFor="let item of list" [name]="item.name" [type]="item.type" (delete)="deleteItem($event)"></app-single-product>
+  <ul *ngIf="list?.length">
+    <article class="product">
+      <div class="row">
+        <app-single-product class="list-group" *ngFor="let item of list" [name]="item.name" [type]="item.type" [description]="item.description"
+          (delete)="deleteItem($event)"></app-single-product>
+      </div>
+    </article>
   </ul>
 </div>
 
 <div class="text-right">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add new product</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add
+    new product</button>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -26,16 +38,19 @@
           </div>
           <div class="form-group">
             <label for="exampleInputType1">Product Type</label>
-    <input type="text" class="form-control" id="exampleInputType1" #type>
+            <input type="text" class="form-control" id="exampleInputType1" #type>
+          </div>
+          <div class="form-group">
+            <label for="my-textarea">Product description</label>
+            <textarea id="my-textarea" class="form-control" name="" rows="3" #description></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="changeList(name.value,type.value)">Add</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"
+          (click)="changeList(name.value,type.value,description.value)">Add</button>
       </div>
     </div>
   </div>
 </div>
-
-

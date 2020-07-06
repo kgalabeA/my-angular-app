@@ -9,6 +9,7 @@ export class SingleProductComponent implements OnInit {
 
   @Input() name:string;
   @Input() type:string;
+  @Input() description:string;
   @Output('delete') deleteItem$: EventEmitter<string>= new EventEmitter<string>();
 
   constructor() { }
